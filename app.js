@@ -7,6 +7,7 @@ var bodyParser = require('body-parser');
 var ejs= require('ejs');
 var session = require('express-session');
 var MongoStore = require('connect-mongo')(session);
+var flash = require('connect-flash');
 
 var routes = require('./routes/index');
 //db配置文件
@@ -38,7 +39,8 @@ app.use(session({
   proxy: true,
   resave: true,
   saveUninitialized: true
-}))
+}));
+app.use(flash());
 app.use('/', routes);
 
 // catch 404 and forward to error handler
